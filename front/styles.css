@@ -1,0 +1,26 @@
+
+body {
+    width: 50rem;
+    margin: 0 auto;
+}
+
+main {
+    min-height: 80vh;
+}
+
+input.name {
+    width: 30rem;
+}
+
+input.number {
+    width: 4rem;
+}
+
+.delete-icon:before {
+    font-family: "Material Symbols Outlined", serif;
+    content: "\e872";
+    position: relative;
+    font-size: 1.4rem;
+    bottom: 0.1rem;
+    cursor: grab;
+}
