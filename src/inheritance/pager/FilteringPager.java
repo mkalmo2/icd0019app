@@ -19,7 +19,7 @@ public class FilteringPager {
     }
 
     public List<String> getCurrentPage() {
-        throw new RuntimeException("not implemented yet");
+        return List.of();
     }
 
     public List<String> getPreviousPage() {
