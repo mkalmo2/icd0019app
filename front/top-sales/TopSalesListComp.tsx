@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Component } from 'react';
-import Dao from "../common/Dao.ts";
+import React, { Component } from 'react';
+import TopSalesDao from "./TopSalesDao.ts";
 import PaginationComp from "./PaginationComp.tsx";
 
 type Row = {
@@ -24,7 +24,7 @@ type State = {
     pageRows: Row[]
 }
 
-const dao = new Dao();
+const dao = new TopSalesDao();
 
 export default class TopSalesListComp extends Component<{}, {}> {
 
@@ -73,11 +73,13 @@ export default class TopSalesListComp extends Component<{}, {}> {
     render() {
         return (
             <>
-                <PaginationComp
-                    pageNo={this.state.pageNo}
-                    pageSize={this.state.pageSize}
-                    pageCount={Math.ceil(this.state.totalRowCount / this.state.pageSize)}
-                    cb={ this.updatePage.bind(this) } />
+                <div className='d-flex align-items-end flex-column'>
+                    <PaginationComp
+                        pageNo={this.state.pageNo}
+                        pageSize={this.state.pageSize}
+                        pageCount={Math.ceil(this.state.totalRowCount / this.state.pageSize)}
+                        cb={ this.updatePage.bind(this) } />
+                </div>
 
                 <table className="table test-border">
                     <thead>

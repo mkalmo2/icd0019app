@@ -2,6 +2,7 @@ package server;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import controllers.PagerController;
 import controllers.TopSalesController;
 import server.annotations.Delete;
 import server.annotations.Get;
@@ -20,7 +21,7 @@ public class Dispatcher {
                           String json, Map<String, Object> map) throws JsonProcessingException {
 
         Optional<MethodWrapper> optionalMethod = findMethodFromObject(path, httpMethod,
-                new TopSalesController());
+                new PagerController());
 
         MethodWrapper method = optionalMethod.orElseThrow(
                 () -> new RuntimeException(String.format("no such path for method: '%s' %s",

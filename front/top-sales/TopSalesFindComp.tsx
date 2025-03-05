@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Dao from "../common/Dao.ts";
+import TopSalesDao from "./TopSalesDao.ts";
 
 type Row = {
     productId: string,
@@ -23,7 +23,7 @@ export default class TopSalesFindComp extends Component<{}, {}> {
     }
 
     async refreshRows() {
-        const rows = await new Dao().getSalesRecordsOver(this.state.amount) as Row[];
+        const rows = await new TopSalesDao().getSalesRecordsOver(this.state.amount) as Row[];
         this.setState({rows});
     }
 
@@ -34,15 +34,16 @@ export default class TopSalesFindComp extends Component<{}, {}> {
     render() {
         return (
             <>
-                <div className="input-group mb-3">
-                    <input type="text" className="form-control"
-                           value={this.state.amount}
-                           onChange={(e: any) => this.updateAmount(e.target.value)}
-                           placeholder="Item sales threshold"/>
-                    <button className="btn btn-outline-success"
-                            onClick={() => this.refreshRows()}
-                            type="button" id="button-addon2">Find Items Sold Over
-                    </button>
+                <div className='d-flex align-items-end flex-column'>
+                    <div className="input-group mb-3 top-sales-find-inputs">
+                        <input type="text" className="form-control"
+                               value={this.state.amount}
+                               onChange={(e: any) => this.updateAmount(e.target.value)} />
+                        <button className="btn btn-outline-success"
+                                onClick={() => this.refreshRows()}
+                                type="button" id="button-addon2">Find Items Sold Over
+                        </button>
+                    </div>
                 </div>
 
                 <table className="table">

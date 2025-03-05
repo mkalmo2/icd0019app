@@ -24,7 +24,7 @@ const PaginationComp = (props: Props) => {
     }
 
     return (
-        <nav className="d-flex align-items-center gap-2 mb-2">
+        <nav className="d-flex align-items-center gap-2 mb-2 pagination-comp">
             <ul className="pagination mb-0">
                 <li className={ pageNo == 0 ? 'page-item disabled' : 'page-item'}>
                     <button className="page-link"

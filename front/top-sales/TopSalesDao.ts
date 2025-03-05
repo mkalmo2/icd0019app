@@ -1,6 +1,6 @@
-import Http from "./Http.ts";
+import Http from "../common/Http.ts";
 
-export default class Dao {
+export default class TopSalesDao {
 
     private http: Http;
 

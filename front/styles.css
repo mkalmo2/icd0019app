@@ -16,6 +16,18 @@ input.number {
     width: 4rem;
 }
 
+.pagination-comp select {
+    width: 4rem;
+}
+
+.top-sales-find-inputs {
+    width: 16rem;
+}
+
+.pager .number-col {
+    width: 3rem;
+}
+
 .delete-icon:before {
     font-family: "Material Symbols Outlined", serif;
     content: "\e872";
