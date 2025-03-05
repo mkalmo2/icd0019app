@@ -3,11 +3,9 @@ package controllers;
 import junit.sales.SalesRecord;
 import junit.sales.SalesRecordResult;
 import junit.sales.TopSalesFinder;
-import server.annotations.Delete;
-import server.annotations.Get;
-import server.annotations.Param;
-import server.annotations.Post;
+import server.annotations.*;
 
+@Controller
 public class TopSalesController {
 
     private static final TopSalesFinder finder = new TopSalesFinder();

@@ -2,11 +2,13 @@ package controllers;
 
 import inheritance.pager.FilteringPager;
 import inheritance.pager.SimplePager;
+import server.annotations.Controller;
 import server.annotations.Get;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Controller
 public class PagerController {
 
     private static final int PAGE_SIZE = 4;
