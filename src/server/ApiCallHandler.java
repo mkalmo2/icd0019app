@@ -9,9 +9,11 @@ import java.io.OutputStream;
 
 public class ApiCallHandler implements HttpHandler {
     private final String pathPrefix;
+    private final Dispatcher dispatcher;
 
-    public ApiCallHandler(String pathPrefix) {
+    public ApiCallHandler(String pathPrefix, Dispatcher dispatcher) {
         this.pathPrefix = pathPrefix;
+        this.dispatcher = dispatcher;
     }
 
     @Override
@@ -28,7 +30,7 @@ public class ApiCallHandler implements HttpHandler {
 
         String method = exchange.getRequestMethod();
 
-        String jsonResult = new Dispatcher().execute(
+        String jsonResult = dispatcher.execute(
                 method, path, body, new QueryParser(query).getParameters());
 
         exchange.getResponseHeaders().add("Content-Type", "text/html");

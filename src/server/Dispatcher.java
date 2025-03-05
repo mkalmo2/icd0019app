@@ -2,8 +2,6 @@ package server;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import controllers.PagerController;
-import controllers.TopSalesController;
 import server.annotations.Delete;
 import server.annotations.Get;
 import server.annotations.Post;
@@ -16,12 +14,17 @@ import java.util.Map;
 import java.util.Optional;
 
 public class Dispatcher {
+    
+    private final List<Object> controllers;
+    
+    public Dispatcher() {
+        this.controllers = new PackageScanner("controllers").findControllers();
+    }
 
     public String execute(String httpMethod, String path,
                           String json, Map<String, Object> map) throws JsonProcessingException {
 
-        Optional<MethodWrapper> optionalMethod = findMethodFromObject(path, httpMethod,
-                new PagerController());
+        Optional<MethodWrapper> optionalMethod = findMethodFromControllers(path, httpMethod);
 
         MethodWrapper method = optionalMethod.orElseThrow(
                 () -> new RuntimeException(String.format("no such path for method: '%s' %s",
@@ -41,7 +44,18 @@ public class Dispatcher {
         return new ObjectMapper().writeValueAsString(result);
     }
 
-    private static <T extends Annotation> Optional<MethodWrapper> findMethodFromObject(
+    private Optional<MethodWrapper> findMethodFromControllers(String path, String httpMethod) {
+        for (Object controller : controllers) {
+            Optional<MethodWrapper> methodWrapper = findMethodFromObject(path, httpMethod, controller);
+            if (methodWrapper.isPresent()) {
+                return methodWrapper;
+            }
+        }
+        
+        return Optional.empty();
+    }
+    
+    private static Optional<MethodWrapper> findMethodFromObject(
             String path, String httpMethod, Object controller) {
 
         Method[] methods = controller.getClass().getDeclaredMethods();

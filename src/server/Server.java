@@ -13,7 +13,7 @@ public class Server {
         server.createContext("/", new StaticFileHandler("front"))
                 .getFilters().add(new ExceptionLoggingFilter());
 
-        server.createContext("/api", new ApiCallHandler("/api/"))
+        server.createContext("/api", new ApiCallHandler("/api/", new Dispatcher()))
                 .getFilters().add(new ExceptionLoggingFilter());
 
         server.start();

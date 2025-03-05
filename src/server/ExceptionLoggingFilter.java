@@ -11,7 +11,7 @@ public class ExceptionLoggingFilter extends Filter {
         try {
             chain.doFilter(exchange);
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
             String error = "Internal Server Error";
             exchange.sendResponseHeaders(500, error.length());
             try (OutputStream os = exchange.getResponseBody()) {

@@ -13,7 +13,7 @@ public class PagerController {
 
     private static final int PAGE_SIZE = 4;
 
-    private static final FilteringPager pager;
+    private final FilteringPager pager;
 
     public record Response(List<String> pageRows,
                            int pageSize,
@@ -21,7 +21,7 @@ public class PagerController {
                            boolean hasNextPage,
                            boolean hasPreviousPage) {}
 
-    static {
+    public PagerController() {
         List<String> data = Arrays.asList(
                 "Stapler", null, null, "Paper",
                 "Markers", null, "Pens", "Pencils",

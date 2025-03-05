@@ -8,9 +8,9 @@ import server.annotations.*;
 @Controller
 public class TopSalesController {
 
-    private static final TopSalesFinder finder = new TopSalesFinder();
+    private final TopSalesFinder finder = new TopSalesFinder();
 
-    static {
+    public TopSalesController() {
         finder.registerSale(new SalesRecord("Staples", 1, 1));
         finder.registerSale(new SalesRecord("Staples", 1, 2));
         finder.registerSale(new SalesRecord("Staples", 1, 3));
