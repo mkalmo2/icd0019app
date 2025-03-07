@@ -34,8 +34,6 @@ public class PagerController {
         SimplePager simplePager = new SimplePager(data, 3);
 
         pager = new FilteringPager(simplePager, PAGE_SIZE);
-
-        pager.getNextPage();
     }
 
     private Response createResponse(List<String> page) {
