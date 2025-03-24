@@ -34,7 +34,7 @@ export default class AnalyserComp extends Component<{}, AnalyserState> {
     }
 
     handleRegionChange = (region: string) => {
-        this.loadResults(region);
+        return this.loadResults(region);
     }
 
     render() {

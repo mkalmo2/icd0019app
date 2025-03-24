@@ -33,7 +33,9 @@ public class Dispatcher {
         List<Object> parameters = new ArrayList<>();
         for (ParameterWrapper parameter : method.getParameters()) {
             if (parameter.name() != null) {
-                parameters.add(map.get(parameter.name()));
+                Object converted = convert(map.get(parameter.name()), parameter.type());
+
+                parameters.add(converted);
             } else {
                 parameters.add(new ObjectMapper().readValue(json, parameter.type()));
             }
@@ -42,6 +44,18 @@ public class Dispatcher {
         Object result = method.execute(parameters.toArray());
 
         return new ObjectMapper().writeValueAsString(result);
+    }
+
+    private Object convert(Object value, Class<?> type) {
+        if (type == String.class) {
+            return value.toString();
+        } else if (type == Integer.class) {
+            return Integer.parseInt(value.toString());
+        } else if (type == Double.class) {
+            return Double.parseDouble(value.toString());
+        }
+
+        throw new IllegalArgumentException("unexpected type: " + type);
     }
 
     private Optional<MethodWrapper> findMethodFromControllers(String path, String httpMethod) {

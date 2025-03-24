@@ -12,12 +12,10 @@ public class MethodWrapper {
 
     public Method method;
     private final Object controller;
-//    private final List<Object> parameters = new ArrayList<>();
 
     public MethodWrapper(Object controller, Method method) {
         this.method = method;
         this.controller = controller;
-//        this.parameters.addAll(parameters);
     }
 
     public List<ParameterWrapper> getParameters() {
@@ -37,8 +35,6 @@ public class MethodWrapper {
     }
 
     public Object execute(Object ... parameters) {
-//        this.parameters.addAll(Arrays.asList(parameters));
-
         try {
             return method.invoke(controller, parameters);
         } catch (Exception e) {
