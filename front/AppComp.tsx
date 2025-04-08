@@ -9,6 +9,7 @@ import ServicesListComp from "./cart/ServicesListComp.tsx";
 import ShoppingCartComp from "./cart/ShoppingCartComp.tsx";
 import FpAnalyserListComp from "./fp-analyser/FpAnalyserListComp.tsx";
 import FpAnalyserInfoComp from "./fp-analyser/FpAnalyserInfoComp.tsx";
+import CustomersListComp from "./customers/CustomersListComp.tsx";
 
 const AppComp = () => {
 
@@ -58,6 +59,9 @@ const AppComp = () => {
             </Route>
             <Route path="/fp-analyser">
                 <Redirect to='/fp-analyser/list' />
+            </Route>
+            <Route path="/customers">
+                <CustomersListComp />
             </Route>
             <Route path="/">
                 <Redirect to='/home' />

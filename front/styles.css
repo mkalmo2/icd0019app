@@ -36,3 +36,12 @@ input.number {
     bottom: 0.1rem;
     cursor: grab;
 }
+
+.loyalty-icon:before {
+    font-family: "Material Symbols Outlined", serif;
+    content: "\e89a";
+    position: relative;
+    font-size: 1.4rem;
+    bottom: 0.1rem;
+    cursor: grab;
+}
